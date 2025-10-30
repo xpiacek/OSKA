@@ -19,7 +19,7 @@ find /public -type f -ctime -7
 Ktoré sú správne?
 
 - [ ] A) mtime = čas úpravy obsahu
-- [ ] B) atime = čas poslednéhozápachu
+- [ ] B) atime = čas last access otvorenia
 - [ ] C) ctime = čas zmeny inode
 - [ ] D) Všetky sú rovnaké
 
