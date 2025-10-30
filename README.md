@@ -90,16 +90,9 @@ Otázka alebo scenár
 
 ---
 
-## ✅ ČÍTANÍ PRE RÝCHLE OVLÁDNUTIE
-
 1. **TEST-1-ZAKLADNE.md** - Začni tu (60 otázok)
 2. **HISTÓRIA-CVIČIACICH.md** - Reálne príklady
 3. **SKRIPTY-1-AZ-10-v2.md** - Praktika
 4. **TEST-2-STREDNA.md** - Pokročilý test (32 otázok)
 5. **TEST-3-POKROCILA.md** - Najťažší test (30 otázok)
 
----
-
-**V PORIADKU! TERAZ MÁME VŠETKO ČISTEJŠIE A LEPŠIE!** ✅
-
-Všetky súbory sú v Markdown formáte a sú **STIAHOVATEĽNÉ**!
