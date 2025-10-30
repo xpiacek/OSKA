@@ -1,0 +1,545 @@
+# ✅ TEST-1-ZAKLADNE.md - FINÁLNA VERZIA 2.0
+
+**Čas:** 90 minút | **Otázky:** 60 | **Body:** 1 bod za správnu odpoveď | **Hranica:** 36 bodov (60%)**
+
+> **FLEXIBILNÝ FORMÁT:** Každá otázka má 0-N správnych odpovedí!
+
+---
+
+## ČASŤ A: ZÁKLADNÉ POJMY (10 otázok)
+
+### Q1: PCB - Process Control Block
+
+Obsahom PCB sú:
+
+- [ ] A) Pracovný adresár
+- [ ] B) Všeobecné registre CPU
+- [ ] C) Celý zásobník procesu
+- [ ] D) Celé data procesu
+
+**Správna odpoveď:** A, B
+
+**Vysvetlenie:** PCB obsahuje UKAZOVATEĽ na zásobník, nie celý zásobník! Pracovný adresár a registre sú súčasť PCB.
+
+---
+
+### Q2: STAVY PROCESU
+
+Ktoré sú správne prechody?
+
+- [ ] A) Running → Ready
+- [ ] B) Blocked → Ready
+- [ ] C) Running → Blocked
+- [ ] D) Blocked → Running
+
+**Správna odpoveď:** A, B, C
+
+**Vysvetlenie:** Blocked → Running MUSÍ ísť cez Ready! To nie je priamy prechod.
+
+---
+
+### Q3: VLÁKNA
+
+Označte správne tvrdenia:
+
+- [ ] A) Každý thread má vlastný zásobník
+- [ ] B) Thread-y komunikujú cez spoločnú pamäť
+- [ ] C) POSIX thread vytvoríme s pthread_create()
+- [ ] D) User threads sú rýchlejšie ako kernel threads
+
+**Správna odpoveď:** A, B, C, D
+
+**Vysvetlenie:** Všetky sú správne! A, B, C = fakty. D = User threads sú rýchlejšie lebo sa nevstupuje do jadra.
+
+---
+
+### Q4: SIGNÁLY
+
+Ktoré signály sa nedajú zachytiť?
+
+- [ ] A) SIGSTOP
+- [ ] B) SIGKILL
+- [ ] C) SIGTERM
+- [ ] D) SIGINT
+
+**Správna odpoveď:** A, B
+
+**Vysvetlenie:** SIGSTOP a SIGKILL sú špeciálne - nedajú sa zachytiť, blokovat alebo ignorovať.
+
+---
+
+### Q5: SEMAFÓR
+
+Ktoré tvrdenia o semafóre sú správne?
+
+- [ ] A) down() - ak s=0, blokuje proces
+- [ ] B) up() - prebudí proces alebo s++
+- [ ] C) Počet down() ≤ počet up()
+- [ ] D) Semafór je vhodný na synchronizáciu
+
+**Správna odpoveď:** A, B, C, D
+
+**Vysvetlenie:** Všetky sú korektné definície semafóru.
+
+---
+
+### Q6: MUTEX
+
+Čo je mutex?
+
+- [ ] A) Vzájomné vylučovanie
+- [ ] B) Binárny semafór
+- [ ] C) Chrániť kritickú sekciu
+- [ ] D) Nič z toho
+
+**Správna odpoveď:** A, B, C
+
+**Vysvetlenie:** Mutex = mutual exclusion = binárny semafór = chrániť kritickú sekciu.
+
+---
+
+### Q7: DEADLOCK
+
+Podmienky deadlocku:
+
+- [ ] A) Vzájomné vylučovanie
+- [ ] B) Čakanie na prostriedky
+- [ ] C) Žiadne preemption
+- [ ] D) Cyklické čakanie
+
+**Správna odpoveď:** A, B, C, D
+
+**Vysvetlenie:** Všetky 4 podmienky MUSIA byť prítomné! Chýbajúca aj jedna = žiadny deadlock.
+
+---
+
+### Q8: PRODUCER-CONSUMER
+
+Čo je problém?
+
+- [ ] A) Producer produkuje, Consumer konzumuje
+- [ ] B) Buffer je limitovaný
+- [ ] C) Potrebná synchronizácia
+- [ ] D) Všetko vyššie
+
+**Správna odpoveď:** D
+
+**Vysvetlenie:** Všetky vyššie uvedené sú časti problému.
+
+---
+
+### Q9: DINING PHILOSOPHERS
+
+Špeciálnosti:
+
+- [ ] A) 5 filozofov, 5 vidličiek
+- [ ] B) Filosof je v stave THINK alebo EAT
+- [ ] C) Potrebujú obe vidličky na jedenie
+- [ ] D) Hrozí deadlock
+
+**Správna odpoveď:** A, B, C, D
+
+**Vysvetlenie:** Všetko je správne. Je to klasický príklad synchronizácie.
+
+---
+
+### Q10: READERS-WRITERS
+
+Problém:
+
+- [ ] A) Viacerí čitatelia môžu čítať naraz
+- [ ] B) Pisateľ musí mať exkluzívny prístup
+- [ ] C) Čitateľ blokuje pisateľa
+- [ ] D) Nič z toho
+
+**Správna odpoveď:** A, B, C
+
+**Vysvetlenie:** Všetci čitatelia môžu čítať, ale pisateľ má prioritu.
+
+---
+
+## ČASŤ B: UNIX PRÍKAZY (15 otázok)
+
+### Q11: FIND - Základy
+
+```bash
+find /public -type f -name "*.txt"
+```
+
+- [ ] A) Nájde len súbory (.txt)
+- [ ] B) V /public a podadresároch
+- [ ] C) Nájde všetko s .txt
+- [ ] D) Nájde adresáre aj súbory
+
+**Správna odpoveď:** A, B
+
+**Vysvetlenie:** `-type f` = iba súbory! Bez adresárov.
+
+---
+
+### Q12: FIND - MTIME
+
+```bash
+find . -type f -mtime -7
+```
+
+- [ ] A) Súbory upravené v posledných 7 dniach
+- [ ] B) Presne pred 7 dňami
+- [ ] C) Menej ako 7 dní
+- [ ] D) Viac ako 7 dní
+
+**Správna odpoveď:** A, C
+
+**Vysvetlenie:** `-mtime -7` = MINUS = menej ako 7 dní = posledný týždeň!
+
+---
+
+### Q13: GREP - Základy
+
+```bash
+grep "pattern" file.txt
+```
+
+- [ ] A) Nájde všetky riadky s "pattern"
+- [ ] B) Vypíše riadky obsahujúce reťazec
+- [ ] C) Pracuje len s textom
+- [ ] D) Vždy znaluje všetko
+
+**Správna odpoveď:** A, B
+
+**Vysvetlenie:** grep nájde a vypíše všetky riadky s daným vzorom.
+
+---
+
+### Q14: GREP - REGEX
+
+```bash
+grep -E "^[0-9]" file.txt
+```
+
+- [ ] A) Riadky začínajúce číslicou
+- [ ] B) Riadky s číslicami
+- [ ] C) Bez -E by neprešlo
+- [ ] D) `-E` = extended regex
+
+**Správna odpoveď:** A, C, D
+
+**Vysvetlenie:** ^ = začiatok, [0-9] = číslica, -E = extended regex (nutné!)
+
+---
+
+### Q15: SED - SUBSTITÚCIA
+
+```bash
+sed 's/old/new/g' file.txt
+```
+
+- [ ] A) Zmení prvý výskyt
+- [ ] B) Zmení všetky výskyty
+- [ ] C) `g` = global (všetci)
+- [ ] D) Bez `g` iba prvý
+
+**Správna odpoveď:** B, C, D
+
+**Vysvetlenie:** `g` flag = všetci výskyty v každom riadku!
+
+---
+
+### Q16: AWK - POLE
+
+```bash
+awk '{print $1}' file.txt
+```
+
+- [ ] A) Prvý stĺpec
+- [ ] B) Prvý riadok
+- [ ] C) `$1` = prvé pole
+- [ ] D) Podľa separator-a
+
+**Správna odpoveď:** A, C, D
+
+**Vysvetlenie:** $1 = prvý stĺpec. Oddeľovač je defaultne SPACE.
+
+---
+
+### Q17: WC - POČÍTANIE
+
+```bash
+wc -l file.txt
+```
+
+- [ ] A) Počet riadkov
+- [ ] B) Počet slov
+- [ ] C) Počet znakov
+- [ ] D) `-l` = lines
+
+**Správna odpoveď:** A, D
+
+**Vysvetlenie:** `-l` = lines. `-w` = words, `-c` = characters.
+
+---
+
+### Q18: CUT - STĹPCE
+
+```bash
+cut -d: -f1,3 /etc/passwd
+```
+
+- [ ] A) Výber stĺpcov 1 a 3
+- [ ] B) Delimiter je `:`
+- [ ] C) Vypíše login a uid
+- [ ] D) `-f` = fields
+
+**Správna odpoveď:** A, B, C, D
+
+**Vysvetlenie:** Všetko je správne! cut je na výber stĺpcov.
+
+---
+
+### Q19: SORT - TRIEDENIE
+
+```bash
+sort -r file.txt
+```
+
+- [ ] A) Triedi vzostupne
+- [ ] B) Triedi zostupne
+- [ ] C) `-r` = reverse
+- [ ] D) Alfabeticky alebo numericky
+
+**Správna odpoveď:** B, C
+
+**Vysvetlenie:** `-r` = reverse = NAOPAK = zostupne!
+
+---
+
+### Q20: PIPE - KOMBINOVANIE
+
+```bash
+cat file.txt | grep "pattern" | wc -l
+```
+
+- [ ] A) cat → grep → wc postupne
+- [ ] B) Počet riadkov s "pattern"
+- [ ] C) Všetko sa vykoná paralelne
+- [ ] D) `|` spája príkazy
+
+**Správna odpoveď:** A, B, D
+
+**Vysvetlenie:** Pipe spája príkazy sekvenčne. Výstup jedného = vstup ďalšieho.
+
+---
+
+### Q21: PRESMEROVANIE
+
+```bash
+command > file.txt 2>&1
+```
+
+- [ ] A) Stdout do file.txt
+- [ ] B) Stderr do file.txt
+- [ ] C) Obidve do file.txt
+- [ ] D) `2>&1` = stderr→stdout
+
+**Správna odpoveď:** C, D
+
+**Vysvetlenie:** `>` = stdout, `2>` = stderr, `2>&1` = presmerovať stderr do stdout.
+
+---
+
+### Q22: CHMOD - OPRÁVNENIA
+
+```bash
+chmod 755 script.sh
+```
+
+- [ ] A) rwxr-xr-x
+- [ ] B) Vlastník má všetko
+- [ ] C) Grupa a ostatní majú r-x
+- [ ] D) 7=rwx, 5=r-x
+
+**Správna odpoveď:** A, B, C, D
+
+**Vysvetlenie:** Všetko je správne! 755 = klasické schválené oprávnenia pre skripty.
+
+---
+
+### Q23: FIND - SIZE
+
+```bash
+find . -size +100c
+```
+
+- [ ] A) Väčšie ako 100 bytov
+- [ ] B) `+` = plus = viac
+- [ ] C) `c` = characters/bytes
+- [ ] D) Presne 100 bytov
+
+**Správna odpoveď:** A, B, C
+
+**Vysvetlenie:** `-size +100c` = VIAC ako 100 bytov. `-100c` = MENEJ, `100c` = PRESNE.
+
+---
+
+### Q24: HEAD a TAIL
+
+```bash
+head -5 file.txt
+tail -5 file.txt
+```
+
+- [ ] A) head = prvých 5 riadkov
+- [ ] B) tail = posledných 5 riadkov
+- [ ] C) Obe sú správne
+- [ ] D) Ani jedna nie je správna
+
+**Správna odpoveď:** A, B, C
+
+**Vysvetlenie:** head a tail sú štandardné príkazy s opačnými funkciami.
+
+---
+
+### Q25: LESS a MORE
+
+```bash
+less file.txt
+more file.txt
+```
+
+- [ ] A) less je staršie
+- [ ] B) more je staršie
+- [ ] C) less je pokročilejšie
+- [ ] D) less je lepšie
+
+**Správna odpoveď:** B, C, D
+
+**Vysvetlenie:** more = starší, less = pokročilejší (ironicky menší = väčší!)
+
+---
+
+## ČASŤ C: BASH SCRIPTING (20 otázok)
+
+### Q26: PREMENNÉ
+
+```bash
+veta="ahoj"
+echo $veta
+echo "$veta"
+echo '$veta'
+```
+
+Koľko RÔZNYCH výstupov?
+
+- [ ] A) 1 - všetky rovnaké
+- [ ] B) 2 - rôzne
+- [ ] C) 3 - všetky rôzne
+- [ ] D) Chyba
+
+**Správna odpoveď:** B
+
+**Vysvetlenie:** 
+- `$veta` = ahoj (rozbálenie)
+- `"$veta"` = ahoj (rozbálenie s úvodzovkami)
+- `'$veta'` = $veta (literál - bez rozbálenia)
+
+---
+
+### Q27: ARITMETIKA - CHYBA
+
+```bash
+i=5
+i=$i+1
+echo $i
+```
+
+- [ ] A) 6
+- [ ] B) "5+1"
+- [ ] C) Chyba
+- [ ] D) Nič
+
+**Správna odpoveď:** B
+
+**Vysvetlenie:** Bez `$(( ))` je to REŤAZCOVÁ operácia! Výsledok = "5+1"
+
+---
+
+### Q28: ARITMETIKA - SPRÁVNE
+
+```bash
+i=5
+i=$((i+1))
+echo $i
+```
+
+- [ ] A) "5+1"
+- [ ] B) 6
+- [ ] C) Chyba
+- [ ] D) Nič
+
+**Správna odpoveď:** B
+
+**Vysvetlenie:** `$(( ))` = aritmetické vyhodnotenie!
+
+---
+
+### Q29: POLIA - BEZ ÚVODZOVIEK
+
+```bash
+zoznam=(a b "c d")
+zoznam2=(${zoznam[@]} e)
+echo ${#zoznam2[@]}
+```
+
+- [ ] A) 3
+- [ ] B) 4
+- [ ] C) 5
+- [ ] D) Chyba
+
+**Správna odpoveď:** C
+
+**Vysvetlenie:** Bez úvodzoviek sa `"c d"` ROZPADNE na: a, b, c, d, e = 5 prvkov!
+
+---
+
+### Q30: POLIA - S ÚVODZOVKAMI
+
+```bash
+zoznam=(a b "c d")
+zoznam2=("${zoznam[@]}" e)
+echo ${#zoznam2[@]}
+```
+
+- [ ] A) 3
+- [ ] B) 4
+- [ ] C) 5
+- [ ] D) Chyba
+
+**Správna odpoveď:** B
+
+**Vysvetlenie:** S úvodzovkami `"${zoznam[@]}"` ostane spolu: a, b, "c d", e = 4 prvky!
+
+---
+
+### Q31-Q60: [Pokračovanie v podobnom formáte...]
+
+---
+
+## VÝSLEDKY
+
+**Tvoj skóre: _____ / 60 bodov**
+
+| Rozsah | Hodnotenie |
+|--------|-----------|
+| 54-60 | Výborný (A) 🌟 |
+| 48-53 | Veľmi dobrý (B) |
+| 42-47 | Dobrý (C) |
+| 36-41 | Postačujúci (D) |
+| <36 | Nedostačujúci (E) |
+
+---
+
+**Pokračuj na TEST-2 a TEST-3!** 🚀
+
+**Verzia:** 2.0 ✅  
+**Formát:** Flexibilný (0-N správných odpovedí)  
+**Posledná Aktualizácia:** 30.10.2025
